@@ -18,15 +18,14 @@ app.get('/', (request, response) => {
   response.send('Hello World!');
 });
 
+
+
+//object containing a property for each query string parameter in the route
+// API endpoint of `/weather` that processes a `GET` request that contains `lat`, `lon` and `searchQuery` information.
+
 app.get('/weather', (request, response) => {
-  response.send(` {
-    "description": "Low of 17.1, high of 23.6 with broken clouds",
-    "date": "2021-03-31"
-  },
-  {
-    "description": "Low of 17.5, high of 29.9 with few clouds",
-    "date": "2021-04-01"
-  }`);
+
+  response.send();
 
 });
 

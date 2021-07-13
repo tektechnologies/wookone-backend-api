@@ -19,7 +19,14 @@ app.get('/', (request, response) => {
 });
 
 app.get('/weather', (request, response) => {
-  response.send(``);
+  response.send(` {
+    "description": "Low of 17.1, high of 23.6 with broken clouds",
+    "date": "2021-03-31"
+  },
+  {
+    "description": "Low of 17.5, high of 29.9 with few clouds",
+    "date": "2021-04-01"
+  }`);
 
 });
 

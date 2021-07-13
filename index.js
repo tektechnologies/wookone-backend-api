@@ -9,7 +9,7 @@ require('dotenv').config();
 const PORT = process.env.PORT || 3005;
 
 const weatherData = require('./data/weather.json');
-console.log('weather Data', weatherData);
+// console.log('weather Data', weatherData);
 
 
 app.use(cors());
@@ -26,40 +26,32 @@ app.use ('*', (request, response) => {
 // API endpoint of `/weather` that processes a `GET` request that contains `lat`, `lon` and `searchQuery` information.
 
 app.get('/weather', (request, response) => {
-  let {urlSearch} = request.query;
+  
+  let { urlSearch } = request.query;
   console.log('url req search', urlSearch);
   console.log('weather json', weatherData);
 
   const citySearch = weatherData.find(city => { city.city_name.toLowerCase() === urlSearch.toLowerCase()});
-  
+  console.log('citySearch', citySearch);
+
   try {
-    const weatherJsonArray = citySearch.data.map(day => {
-      new Forecast(day); 
-    });
+    const weatherJsonArray = citySearch.data.map(day =>  new Forecast(day));
       response.status(200).send(weatherJsonArray);
-    
   } catch (error) {
     errorHandler(error, response);
   }
-
-
-
-
-
-
-
-
-
 
   });// close function
 
 
 
+  class Forecast {
+    constructor(day) {
+      this.date = day.valid_date,
+      this.description = day.weather.description
+    }
+  }
 
-function Forecast(day){
-  this.date = day.valid_date,
-  this.description = day.weather.des
-}
 
 
 function errorHandler(error, response){

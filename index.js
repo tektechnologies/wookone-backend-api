@@ -34,8 +34,9 @@ app.get('/weather', (request, response) => {
   
   try {
     const weatherJsonArray = citySearch.data.map(day => {
-      new Forecast(day);
+      new Forecast(day); 
     });
+      response.status(200).send(weatherJsonArray);
     
   } catch (error) {
     errorHandler(error, response);
@@ -47,14 +48,18 @@ app.get('/weather', (request, response) => {
 
 
 
-  response.send();
 
 
 
-  });
+  });// close function
 
 
 
+
+function Forecast(day){
+  this.date = day.valid_date,
+  this.description = day.weather.des
+}
 
 
 function errorHandler(error, response){

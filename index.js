@@ -40,8 +40,9 @@ app.get('/weather', (request, response) => {
 
   class Forecast {
     constructor(day) {
-      // console.log('constructor day ', day);
-      
+      console.log('constructor day max temp ', ((day.max_temp * 9) / 5) + 32  );
+      this.max_temp = (((day.max_temp * 9) / 5) + 32),
+      this.wind_cdir = day.wind_cdir,
       this.date = day.valid_date,
       this.description = day.weather.description
     }

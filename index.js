@@ -21,12 +21,13 @@ app.get('/weather', (request, response) => {
   let { searchQuery } = request.query;
   // console.log('searcccch querysssss ', searchQuery);
   const city = weatherData.find(city => city.city_name.toLowerCase() === searchQuery.toLowerCase());
-  // console.log('city to lower case', city);
+  // console.log('city to city.data.city_name', city.data.city_name);
   try{
-      // console.log('city', city);
-      // console.log('weatherData', weatherData);
+      console.log('city', city);
+      //  console.log('weatherData server', weatherData);
       const weatherArray = city.data.map(day => new Forecast(day));
       response.status(200).send(weatherArray);
+      
     } catch(error) {
       errorHandler(error, response);
     }
@@ -39,6 +40,8 @@ app.get('/weather', (request, response) => {
 
   class Forecast {
     constructor(day) {
+      // console.log('constructor day ', day);
+      
       this.date = day.valid_date,
       this.description = day.weather.description
     }

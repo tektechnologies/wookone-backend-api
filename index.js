@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 require('dotenv').config();
-
 // eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 3005;
 

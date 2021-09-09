@@ -10,9 +10,9 @@ const weatherData = require('./data/weather.json');
 
 app.use(cors());
 
-app.get('/', (request, response) => {
-  response.send('Hello World!');
-});
+// app.get('/', (request, response) => {
+//   response.send('Hello World!');
+// });
 
 //object containing a property for each query string parameter in the route
 // API endpoint of `/weather` that processes a `GET` request that contains `lat`, `lon` and `searchQuery` information.
@@ -25,6 +25,8 @@ app.get('/weather', (request, response) => {
   try{
       console.log('city', city);
       //  console.log('weatherData server', weatherData);
+
+      
       const weatherArray = city.data.map(day => new Forecast(day));
       response.status(200).send(weatherArray);
       
@@ -48,9 +50,12 @@ app.get('/weather', (request, response) => {
     }
   }
 
+
+  //function created to handle api 400, 404, and 500 errrors. 
 function errorHandler(error, response){
   console.log(error);
-  response.status(500).send('server is broken');
+  //send status 500 to client that the server is
+  response.status(500).send('Something went wrong.');
 }
 
 
